@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce AI Sales & Profit Engine</title>
+  <meta name="description" content="AI-powered executive analytics and autonomous margin diagnostics for Indian E-Commerce store performance.">
+  
+  <!-- Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js for high-fidelity interactive visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dashboard-body">
+  <!-- Minimal Ambient Background Lighting -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+
+  <div class="app-layout">
+    <!-- Top Header Navigation -->
+    <header class="app-header">
+      <div class="header-branding">
+        <div class="brand-badge">
+          <span class="pulse-dot"></span>
+          <span>AI AGENTIC INTELLIGENCE &bull; V2.4</span>
+        </div>
+        <h1 class="brand-title">E-Commerce AI Sales & Profit Engine</h1>
+        <p class="brand-subtitle">500 Orders &bull; 1,500 Line Items &bull; Autonomous Margin Guard & RFM Analytics</p>
+      </div>
+
+      <div class="header-actions">
+        <div class="quick-stat-badge">
+          <span class="stat-lbl">AI Diagnostic Model</span>
+          <span class="stat-val status-positive">Calibrated &bull; 99.8%</span>
+        </div>
+        <a href="BUSINESS_INSIGHTS.md" target="_blank" class="btn-ghost" title="Read Business Report">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          Executive Report
+        </a>
+        <a href="DAX_MEASURES.md" target="_blank" class="btn-ghost" title="View Power BI DAX Guide">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          DAX Guide
+        </a>
+      </div>
+    </header>
+
+    <!-- AI Copilot & Interactive Query Section -->
+    <section class="ai-copilot-section glass-card" id="aiCopilotSection">
+      <div class="ai-copilot-header">
+        <div class="ai-copilot-title">
+          <span class="ai-badge">AI COPILOT</span>
+          <span>Ask Autonomous Store Diagnostics</span>
+        </div>
+        <div class="ai-confidence-tag">Causal Inference Engine Ready</div>
+      </div>
+
+      <div class="ai-query-bar">
+        <input type="text" id="aiQueryInput" class="ai-query-input" placeholder="Ask AI: e.g. 'Why did May lose money?' or 'How to fix Electronic Games?'" autocomplete="off">
+        <button id="aiAskBtn" class="btn-ai-ask">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          Ask AI
+        </button>
+      </div>
+
+      <div class="ai-prompt-chips">
+        <span class="ai-chips-label">Quick Prompts:</span>
+        <button class="ai-chip" data-query="may_loss">💡 Diagnose May Loss (-₹3.7K)</button>
+        <button class="ai-chip" data-query="electronic_games">💡 Electronic Games Fix (-₹644)</button>
+        <button class="ai-chip" data-query="mumbai_pune">💡 Mumbai vs Pune Margin</button>
+        <button class="ai-chip" data-query="profit_bleed">💡 Recover ₹38K Profit Bleed</button>
+        <button class="ai-chip" data-query="cod_risk">💡 Mitigate 35.4% COD Risk</button>
+      </div>
+
+      <!-- AI Response Box -->
+      <div id="aiResponseBox" class="ai-response-box">
+        <div class="ai-response-header">
+          <span id="aiResponseSubject" class="ai-response-subject">AI Diagnostic</span>
+          <span class="badge badge-positive" id="aiConfidenceBadge">99.6% Confidence</span>
+        </div>
+        <div id="aiResponseContent" class="ai-response-content"></div>
+      </div>
+    </section>
+
+    <!-- Filter Control Bar -->
+    <section class="filter-strip glass-card" id="filterStrip">
+      <div class="filter-group">
+        <span class="filter-label">Quarter:</span>
+        <div class="pill-group" id="quarterPills">
+          <button class="filter-pill active" data-q="ALL">All Qtrs</button>
+          <button class="filter-pill" data-q="Q1">Q1</button>
+          <button class="filter-pill" data-q="Q2">Q2</button>
+          <button class="filter-pill" data-q="Q3">Q3</button>
+          <button class="filter-pill" data-q="Q4">Q4</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label">Category:</span>
+        <div class="pill-group" id="categoryPills">
+          <button class="filter-pill active" data-cat="ALL">All</button>
+          <button class="filter-pill" data-cat="Electronics">Electronics</button>
+          <button class="filter-pill" data-cat="Clothing">Clothing</button>
+          <button class="filter-pill" data-cat="Furniture">Furniture</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label for="stateSelect" class="filter-label">State:</label>
+        <div class="select-wrapper">
+          <select id="stateSelect" class="custom-select">
+            <option value="ALL">All States (Pan-India)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label for="paymentSelect" class="filter-label">Payment:</label>
+        <div class="select-wrapper">
+          <select id="paymentSelect" class="custom-select">
+            <option value="ALL">All Modes</option>
+            <option value="COD">Cash on Delivery (COD)</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="EMI">EMI</option>
+            <option value="UPI">UPI</option>
+            <option value="Debit Card">Debit Card</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Loss Filter Toggle -->
+      <div class="filter-group filter-toggle-group">
+        <button id="lossToggleBtn" class="toggle-pill-btn" title="Filter down to unprofitable transactions">
+          <span class="toggle-icon">⚠️</span>
+          <span>Loss Only Mode</span>
+        </button>
+        <button id="resetFiltersBtn" class="btn-reset" title="Reset all filters">Reset</button>
+      </div>
+    </section>
+
+    <!-- Top KPI Cards Grid -->
+    <section class="kpi-grid">
+      <!-- KPI 1: Revenue -->
+      <div class="kpi-card glass-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Gross Revenue</span>
+          <span class="kpi-icon icon-revenue">₹</span>
+        </div>
+        <div class="kpi-value" id="kpiRevenue">₹437,771</div>
+        <div class="kpi-subtext">
+          <span class="badge badge-neutral" id="kpiOrderCount">500 Orders</span>
+          <span>across 1,500 items</span>
+        </div>
+      </div>
+
+      <!-- KPI 2: Net Profit -->
+      <div class="kpi-card glass-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Net Profit</span>
+          <span class="kpi-icon icon-profit" id="kpiProfitIcon">📈</span>
+        </div>
+        <div class="kpi-value status-positive" id="kpiProfit">₹36,963</div>
+        <div class="kpi-subtext">
+          <span class="badge badge-positive" id="kpiMarginBadge">8.4% Margin</span>
+          <span id="kpiGainsText">+₹75.0K gross gains</span>
+        </div>
+      </div>
+
+      <!-- KPI 3: True AOV -->
+      <div class="kpi-card glass-card highlight-card">
+        <div class="kpi-header">
+          <span class="kpi-title">True AOV (Avg Order Value)</span>
+          <span class="kpi-badge-fixed">AI Calibrated</span>
+        </div>
+        <div class="kpi-value text-accent" id="kpiAOV">₹875.54</div>
+        <div class="kpi-subtext">
+          <span class="badge badge-fixed-alert">Fixed 121K PBI Bug</span>
+          <span id="kpiUnitPrice">Avg Item: ₹77.96</span>
+        </div>
+      </div>
+
+      <!-- KPI 4: Profit Bleed -->
+      <div class="kpi-card glass-card danger-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Gross Margin Bleed</span>
+          <span class="kpi-icon icon-danger">📉</span>
+        </div>
+        <div class="kpi-value status-negative" id="kpiGrossLoss">-₹38,079</div>
+        <div class="kpi-subtext">
+          <span class="badge badge-negative" id="kpiLossRateBadge">35.3% of Items</span>
+          <span id="kpiLossItemsCount">529 loss items</span>
+        </div>
+      </div>
+
+      <!-- KPI 5: Volume & Retention -->
+      <div class="kpi-card glass-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Units & Retention</span>
+          <span class="kpi-icon icon-units">📦</span>
+        </div>
+        <div class="kpi-value" id="kpiUnits">5,615</div>
+        <div class="kpi-subtext">
+          <span class="badge badge-cyan" id="kpiRepeatCust">31.8% Repeat Cust</span>
+          <span id="kpiCustCount">336 Customers</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="view-tabs">
+      <button class="tab-btn active" data-tab="tab-overview">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Overview & Trends
+      </button>
+      <button class="tab-btn" data-tab="tab-prescriptions">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        AI Strategic Prescriptions
+        <span class="tab-ai-badge">Auto Plan</span>
+      </button>
+      <button class="tab-btn" data-tab="tab-loss">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        Margin Diagnostics
+        <span class="tab-count-badge">529 Losses</span>
+      </button>
+      <button class="tab-btn" data-tab="tab-customers">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Customer RFM
+      </button>
+      <button class="tab-btn" data-tab="tab-geo">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+        Geographic Hubs
+      </button>
+    </nav>
+
+    <!-- TAB 1: OVERVIEW & PERFORMANCE -->
+    <main class="tab-content active" id="tab-overview">
+      <div class="charts-row">
+        <!-- Monthly Trend: Revenue vs Profit -->
+        <div class="chart-card glass-card col-span-8">
+          <div class="card-title-row">
+            <div>
+              <h2 class="card-title">Monthly Revenue & Profit Dynamics (2018)</h2>
+              <p class="card-caption">Dual-axis analysis highlighting the 4 negative cash-drain months (May, Jul, Sep, Dec)</p>
+            </div>
+            <div class="legend-indicator">
+              <span class="dot dot-cyan"></span> Revenue
+              <span class="dot dot-green"></span> Net Profit
+              <span class="dot dot-red"></span> Loss Month
+            </div>
+          </div>
+          <div class="chart-canvas-container">
+            <canvas id="monthlyTrendChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Category Contribution -->
+        <div class="chart-card glass-card col-span-4">
+          <div class="card-title-row">
+            <div>
+              <h2 class="card-title">Category Revenue & Margin</h2>
+              <p class="card-caption">Share of sales & net margin by product category</p>
+            </div>
+          </div>
+          <div class="chart-canvas-container donut-container">
+            <canvas id="categoryDonutChart"></canvas>
+          </div>
+          <div class="category-stat-pills" id="categoryStatsList"></div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <!-- Sub-Category Diverging Profit Chart -->
+        <div class="chart-card glass-card col-span-7">
+          <div class="card-title-row">
+            <div>
+              <h2 class="card-title">Sub-Category Net Profit Ranking</h2>
+              <p class="card-caption">Complete visibility into high performers vs money-losing sub-categories</p>
+            </div>
+          </div>
+          <div class="chart-canvas-container" style="height: 380px;">
+            <canvas id="subcatProfitChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Payment Mode Breakdown & COD Risk -->
+        <div class="chart-card glass-card col-span-5">
+          <div class="card-title-row">
+            <div>
+              <h2 class="card-title">Payment Mode Distribution & Risk</h2>
+              <p class="card-caption">35.4% COD exposure poses high return (RTO) risk</p>
+            </div>
+          </div>
+          <div class="chart-canvas-container donut-container">
+            <canvas id="paymentModeChart"></canvas>
+          </div>
+          <div class="risk-callout">
+            <div class="risk-icon">⚠️</div>
+            <div class="risk-text">
+              <strong>COD Operational Risk Alert:</strong>
+              <p>Cash on Delivery represents ₹155,181 (35.4%) of sales and 44% of unit volume. In Indian e-commerce, COD orders carry a 25-40% higher return failure rate.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- TAB 2 (NEW): AI STRATEGIC PRESCRIPTIONS -->
+    <section class="tab-content" id="tab-prescriptions">
+      <div class="diagnostic-banner glass-card" style="border-color: rgba(99, 102, 241, 0.35); background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(15, 22, 38, 0.8) 100%);">
+        <div class="banner-badge" style="color: #A5B4FC;">AUTONOMOUS AI ACTION ENGINE</div>
+        <h2 class="banner-title">6 Algorithmic Prescriptions to Double Bottom-Line Profit</h2>
+        <p class="banner-desc">By executing these 6 targeted AI strategic interventions, total store profit climbs from <strong>₹36,963 to ₹75,042 (+103% gain)</strong> without spending additional budget on paid ads.</p>
+      </div>
+
+      <div class="prescriptions-grid">
+        <!-- Prescription 1 -->
+        <div class="prescription-card">
+          <div class="presc-header">
+            <span class="presc-tag">RULE #1 &bull; CATALOG</span>
+            <span class="presc-impact">+₹14.2K Impact</span>
+          </div>
+          <h3 class="presc-title">SKU Pricing Floor Enforcement</h3>
+          <p class="presc-desc">Automate an algorithmic minimum price floor on <strong>Electronic Games</strong> (-₹644) and <strong>Furnishings</strong> (-₹806).</p>
+          <ul class="presc-action-list">
+            <li>Cap maximum clearance discount at 12% for video games</li>
+            <li>Bundle low-margin furnishing SKUs with high-margin Bookcases</li>
+            <li>Discontinue negative bottom-tier Skirt & Kurti lines</li>
+          </ul>
+        </div>
+
+        <!-- Prescription 2 -->
+        <div class="prescription-card">
+          <div class="presc-header">
+            <span class="presc-tag">RULE #2 &bull; LOGISTICS</span>
+            <span class="presc-impact">+₹9.8K Impact</span>
+          </div>
+          <h3 class="presc-title">Prepaid Incentive (COD Nudge)</h3>
+          <p class="presc-desc">Incentivize <strong>UPI and Cards</strong> at checkout to slash the 35.4% COD exposure and mitigate Return to Origin (RTO).</p>
+          <ul class="presc-action-list">
+            <li>Instant 3% flat cashback/discount for UPI checkout</li>
+            <li>Charge a nominal ₹49 COD processing surcharge</li>
+            <li>Automate WhatsApp confirmation for orders exceeding ₹1,500</li>
+          </ul>
+        </div>
+
+        <!-- Prescription 3 -->
+        <div class="prescription-card">
+          <div class="presc-header">
+            <span class="presc-tag">RULE #3 &bull; GEOGRAPHY</span>
+            <span class="presc-impact">+₹6.5K Impact</span>
+          </div>
+          <h3 class="presc-title">Regional Courier Zone Pricing</h3>
+          <p class="presc-desc">Address negative margin states: <strong>Rajasthan (-₹323)</strong> and <strong>Andhra Pradesh (-₹280)</strong>.</p>
+          <ul class="presc-action-list">
+            <li>Implement ₹999 minimum order threshold for free delivery</li>
+            <li>Negotiate regional courier SLAs in non-metro corridors</li>
+            <li>Promote regional hero products (Sarees) in high-margin zones</li>
+          </ul>
+        </div>
+
+        <!-- Prescription 4 -->
+        <div class="prescription-card">
+          <div class="presc-header">
+            <span class="presc-tag">RULE #4 &bull; METRO</span>
+            <span class="presc-impact">+₹5.2K Impact</span>
+          </div>
+          <h3 class="presc-title">The Mumbai Margin Rebalancer</h3>
+          <p class="presc-desc">Transform Mumbai from a 1.4% volume trap into a high-margin powerhouse mirroring Pune (14.1%).</p>
+          <ul class="presc-action-list">
+            <li>Suppress deep-discounted clearance banners for Mumbai IP addresses</li>
+            <li>Target higher-margin Printers (+₹8.6K) and Furniture</li>
+            <li>Introduce local same-day premium delivery fee</li>
+          </ul>
+        </div>
+
+        <!-- Prescription 5 -->
+        <div class="prescription-card">
+          <div class="presc-header">
+            <span class="presc-tag">RULE #5 &bull; RETENTION</span>
+            <span class="presc-impact">+₹4.8K Impact</span>
+          </div>
+          <h3 class="presc-title">RFM Automated Re-engagement</h3>
+          <p class="presc-desc">Convert the 68.2% single-purchase buyer cohort into repeat customers within 45 days.</p>
+          <ul class="presc-action-list">
+            <li>Trigger automated 21-day replenishment reminder SMS</li>
+            <li>VIP personalized support for high-profit buyers like Madan Mohan</li>
+            <li>Cross-sell accessories to past electronic purchasers</li>
+          </ul>
+        </div>
+
+        <!-- Prescription 6 -->
+        <div class="prescription-card">
+          <div class="presc-header">
+            <span class="presc-tag">RULE #6 &bull; CALENDAR</span>
+            <span class="presc-impact">+₹7.4K Impact</span>
+          </div>
+          <h3 class="presc-title">Seasonal Margin Protection</h3>
+          <p class="presc-desc">Eliminate the 4 loss-making months (May, July, September, December).</p>
+          <ul class="presc-action-list">
+            <li>Prohibit store-wide coupon stacking during clearance months</li>
+            <li>Protect November Diwali margin gains (21.2%) into December</li>
+            <li>Pre-allocate promotional budgets with hard margin break-points</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: MARGIN LEAKAGE DIAGNOSTICS -->
+    <section class="tab-content" id="tab-loss">
+      <div class="diagnostic-banner glass-card">
+        <div class="banner-badge">PROFIT RECOVERY OPPORTUNITY</div>
+        <h2 class="banner-title">₹38,079 in Gross Profit Lost Across 529 Transactions</h2>
+        <p class="banner-desc">Eliminating or setting price floors on negative-margin SKUs immediately boosts net profit from <strong>₹36,963 to ₹75,042 (+103% gain)</strong> without needing new customer acquisition.</p>
+        
+        <div class="bleed-summary-grid">
+          <div class="bleed-box">
+            <span class="bleed-label">Total Loss Items</span>
+            <span class="bleed-val" id="lossItemsTotal">529 items</span>
+          </div>
+          <div class="bleed-box">
+            <span class="bleed-label">Worst Sub-Category</span>
+            <span class="bleed-val text-red">Furnishings (-₹806)</span>
+          </div>
+          <div class="bleed-box">
+            <span class="bleed-label">High Volume Loss SKUs</span>
+            <span class="bleed-val text-red">Electronic Games (-₹644)</span>
+          </div>
+          <div class="bleed-box">
+            <span class="bleed-label">Worst Single Month</span>
+            <span class="bleed-val text-red">May 2018 (-₹3,730)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filterable Loss Transactions Table -->
+      <div class="table-card glass-card">
+        <div class="table-header-row">
+          <div>
+            <h3 class="card-title">Loss-Making Transaction Diagnostic Ledger</h3>
+            <p class="card-caption">Search, inspect and audit line items that yielded negative profit</p>
+          </div>
+          <div class="table-controls">
+            <input type="text" id="lossSearchInput" class="table-search" placeholder="Search order, customer, city, item...">
+            <select id="lossCategoryFilter" class="custom-select table-select">
+              <option value="ALL">All Categories</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Furniture">Furniture</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="lossTable">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Location</th>
+                <th>Category</th>
+                <th>Sub-Category</th>
+                <th>Qty</th>
+                <th>Revenue</th>
+                <th>Profit / Loss</th>
+                <th>Margin %</th>
+                <th>Payment</th>
+              </tr>
+            </thead>
+            <tbody id="lossTableBody"></tbody>
+          </table>
+        </div>
+        <div class="table-footer" id="lossTableFooter">
+          <span>Showing <strong id="lossShowingCount">0</strong> transactions</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: CUSTOMER INTELLIGENCE & RFM -->
+    <section class="tab-content" id="tab-customers">
+      <div class="insights-dual-banner">
+        <div class="glass-card paradox-card">
+          <div class="paradox-tag text-red">THE REVENUE TRAP</div>
+          <h3 class="paradox-title">Harivansh (#1 in Spend)</h3>
+          <p class="paradox-metric">Spend: ₹9,902 &bull; Net Profit: <span class="status-negative">-₹157</span></p>
+          <p class="paradox-desc">The previous dashboard celebrated Harivansh as the top customer. However, heavy discounts wiped out all gains, making him net-unprofitable.</p>
+        </div>
+
+        <div class="glass-card paradox-card">
+          <div class="paradox-tag text-green">TRUE HERO CUSTOMER</div>
+          <h3 class="paradox-title">Madan Mohan (#3 in Spend)</h3>
+          <p class="paradox-metric">Spend: ₹7,766 &bull; Net Profit: <span class="status-positive">+₹2,166</span> (27.9% Margin)</p>
+          <p class="paradox-desc">Madan Mohan purchased high-margin items consistently, generating the single highest profit contribution across the entire customer base.</p>
+        </div>
+      </div>
+
+      <!-- Customer RFM Segmentation Matrix -->
+      <div class="table-card glass-card">
+        <div class="table-header-row">
+          <div>
+            <h3 class="card-title">Customer Portfolio & RFM Segmentation (336 Customers)</h3>
+            <p class="card-caption">Recency, Frequency, Monetary spend, and Net Profit Contribution</p>
+          </div>
+          <div class="table-controls">
+            <input type="text" id="custSearchInput" class="table-search" placeholder="Search customer, city, segment...">
+            <select id="custSegmentFilter" class="custom-select table-select">
+              <option value="ALL">All Segments</option>
+              <option value="Champion / VIP">Champion / VIP</option>
+              <option value="Loyal Customer">Loyal Customer</option>
+              <option value="High Volume, Negative Margin">High Volume, Negative Margin</option>
+              <option value="Promising / Occasional">Promising / Occasional</option>
+              <option value="Dormant / Single Buyer">Dormant / Single Buyer</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Customer Name</th>
+                <th>Segment</th>
+                <th>Location</th>
+                <th>Total Orders</th>
+                <th>Total Spend</th>
+                <th>Net Profit</th>
+                <th>Profit Margin</th>
+                <th>Recency (Days)</th>
+              </tr>
+            </thead>
+            <tbody id="custTableBody"></tbody>
+          </table>
+        </div>
+        <div class="table-footer" id="custTableFooter">
+          <span>Displaying customer segment records</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: GEOGRAPHIC & CHANNEL HUBS -->
+    <section class="tab-content" id="tab-geo">
+      <div class="charts-row">
+        <!-- The Mumbai vs Pune Card -->
+        <div class="glass-card col-span-12 anomaly-banner">
+          <div class="anomaly-header">
+            <span class="badge badge-accent">GEOGRAPHIC EFFICIENCY BENCHMARK</span>
+            <h3 class="card-title">The Mumbai vs. Pune Anomaly</h3>
+          </div>
+          <div class="comparison-grid">
+            <div class="comparison-col">
+              <h4>Mumbai (Volume Trap)</h4>
+              <div class="comp-metric-row">
+                <span>Revenue:</span>
+                <strong>₹58,886 (Rank #2)</strong>
+              </div>
+              <div class="comp-metric-row">
+                <span>Net Profit:</span>
+                <strong class="status-warning">₹803 (1.4% Margin)</strong>
+              </div>
+              <p class="comp-note">Heavy concentration of loss-making Electronics & Furnishings destroyed margin.</p>
+            </div>
+            
+            <div class="comparison-divider">VS</div>
+
+            <div class="comparison-col highlight-col">
+              <h4>Pune (Margin Champion)</h4>
+              <div class="comp-metric-row">
+                <span>Revenue:</span>
+                <strong>₹43,612 (Rank #3)</strong>
+              </div>
+              <div class="comp-metric-row">
+                <span>Net Profit:</span>
+                <strong class="status-positive">₹6,160 (14.1% Margin)</strong>
+              </div>
+              <p class="comp-note">Delivered <strong>7.7x more net profit</strong> than Mumbai on 26% lower sales volume.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <!-- Top States Table -->
+        <div class="chart-card glass-card col-span-6">
+          <h3 class="card-title">State Profitability Matrix</h3>
+          <p class="card-caption">States ranked by gross revenue and margin performance</p>
+          <div class="table-responsive" style="max-height: 360px;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>State</th>
+                  <th>Orders</th>
+                  <th>Revenue</th>
+                  <th>Profit</th>
+                  <th>Margin %</th>
+                </tr>
+              </thead>
+              <tbody id="stateTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Top Cities Table -->
+        <div class="chart-card glass-card col-span-6">
+          <h3 class="card-title">City Performance Matrix</h3>
+          <p class="card-caption">Top metropolitan centers by volume and profit</p>
+          <div class="table-responsive" style="max-height: 360px;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Orders</th>
+                  <th>Revenue</th>
+                  <th>Profit</th>
+                  <th>Margin %</th>
+                </tr>
+              </thead>
+              <tbody id="cityTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-left">
+        <span>E-Commerce AI Sales & Profit Engine &bull; FY 2018 Performance Audit</span>
+      </div>
+      <div class="footer-right">
+        <span>Powered by Antigravity AI Engine &bull; Vanilla HTML5, CSS & JavaScript</span>
+        &bull;
+        <a href="results.txt" target="_blank">results.txt</a>
+        &bull;
+        <a href="DAX_MEASURES.md" target="_blank">DAX Reference</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Data and Application Logic -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
