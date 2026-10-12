@@ -1,39 +1,60 @@
-name: Deploy Static Dashboard to GitHub Pages
+name: Deploy Python Dash App to Render
 
 on:
   push:
     branches: ["main", "master"]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  test:
+    name: Validate Python App
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
         with:
-          enablement: true
+          python-version: "3.13"
 
-      - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Validate data loads & metrics compute
+        run: |
+          python -c "
+          from analysis.loader import load_data
+          from analysis.metrics import top_kpis, monthly_trends, rfm_segmentation
+          orders, details, merged = load_data()
+          kpis = top_kpis(merged)
+          print('✅ KPIs:', kpis)
+          mon = monthly_trends(merged)
+          print('✅ Monthly trends rows:', len(mon))
+          rfm = rfm_segmentation(merged)
+          print('✅ RFM segments:', rfm['Segment'].value_counts().to_dict())
+          print('✅ All validations passed!')
+          "
+
+      - name: Check Dash app imports
+        run: |
+          python -c "
+          import app
+          print('✅ Dash app imported successfully')
+          print('✅ Server object:', app.server)
+          "
+
+  notify:
+    name: Deployment Note
+    runs-on: ubuntu-latest
+    needs: test
+    if: success()
+    steps:
+      - name: Print deploy instructions
+        run: |
+          echo "✅ All tests passed!"
+          echo ""
+          echo "📦 To deploy this Dash app:"
+          echo "   Render.com  → New Web Service → Connect GitHub → Build: pip install -r requirements.txt → Start: gunicorn app:server"
+          echo "   Railway.app → New Project → Deploy from GitHub"
+          echo ""
+          echo "🔗 Repo: https://github.com/patnamchinmayananda-png/E-Commerce-AI-SALES-Profit-engine-"
