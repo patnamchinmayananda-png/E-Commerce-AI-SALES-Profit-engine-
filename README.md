@@ -1,14 +1,25 @@
 # 🤖 E-Commerce AI Sales & Profit Engine
 
+[![🌐 Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Deployed-22C55E?style=for-the-badge&logo=github&logoColor=white)](https://patnamchinmayananda-png.github.io/E-Commerce-AI-SALES-Profit-engine-/)
+[![Deploy to GitHub Pages](https://github.com/patnamchinmayananda-png/E-Commerce-AI-SALES-Profit-engine-/actions/workflows/deploy.yml/badge.svg)](https://github.com/patnamchinmayananda-png/E-Commerce-AI-SALES-Profit-engine-/actions/workflows/deploy.yml)
 [![AI Agentic Intelligence](https://img.shields.io/badge/AI_Engine-Model_v2.4-6366F1?style=for-the-badge&logo=openai&logoColor=white)](#-ai-copilot--prescriptions)
 [![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
 [![Python 3](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Interactive AI Dashboard](https://img.shields.io/badge/Live_AI_Dashboard-HTML5%20%2F%20JS-10B981?style=for-the-badge&logo=html5&logoColor=white)](#-interactive-web-dashboard)
+[![Interactive AI Dashboard](https://img.shields.io/badge/Live_AI_Dashboard-HTML5%20%2F%20JS-10B981?style=for-the-badge&logo=html5&logoColor=white)](https://patnamchinmayananda-png.github.io/E-Commerce-AI-SALES-Profit-engine-/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
 An end-to-end analytical study, AI diagnostic copilot, and autonomous business decision engine for an Indian E-Commerce retail store operating across pan-India territories in FY 2018 (500 orders, 1,500 line items).
 
 This project features an **AI-Powered Interactive Web Application** with an in-browser **AI Copilot**, **Autonomous Strategic Prescriptions**, a **Jupyter Notebook**, an **Interview Playbook**, and a **Microsoft Power BI Dashboard** (`.pbix`).
+
+---
+
+## 🌐 Live Demo
+
+> **✅ Deployed on GitHub Pages**  
+> 👉 **[https://patnamchinmayananda-png.github.io/E-Commerce-AI-SALES-Profit-engine-/](https://patnamchinmayananda-png.github.io/E-Commerce-AI-SALES-Profit-engine-/)**
+
+No installation needed — open the link and explore the full AI-powered dashboard in your browser.
 
 ---
 
@@ -54,8 +65,8 @@ This project features an **AI-Powered Interactive Web Application** with an in-b
 4. **Cash-on-Delivery (COD) Dependency**:
    - COD accounts for **35.4% of total sales** (₹155.2K) and **44% of quantity**, exposing operations to high courier Return to Origin (RTO) risks.
 
-👉 **Interview Preparation:** See the full [INTERVIEW_PLAYBOOK.md](file:///Users/chinna/Downloads/E-Commerce-Store-Analysis--main/INTERVIEW_PLAYBOOK.md) for 60-second STAR pitches and answers to tough technical questions.  
-👉 **Executive Business Report:** See [BUSINESS_INSIGHTS.md](file:///Users/chinna/Downloads/E-Commerce-Store-Analysis--main/BUSINESS_INSIGHTS.md).
+👉 **Interview Preparation:** See the full [INTERVIEW_PLAYBOOK.md](INTERVIEW_PLAYBOOK.md) for 60-second STAR pitches and answers to tough technical questions.  
+👉 **Executive Business Report:** See [BUSINESS_INSIGHTS.md](BUSINESS_INSIGHTS.md).
 
 ---
 
@@ -110,7 +121,7 @@ jupyter notebook ecommerce_analysis.ipynb
 
 ### 4. Microsoft Power BI Desktop (Windows)
 1. Open `E-commerce Sales Dashboard.pbix` in Microsoft Power BI Desktop.
-2. Review [DAX_MEASURES.md](file:///Users/chinna/Downloads/E-Commerce-Store-Analysis--main/DAX_MEASURES.md) for corrected DAX formulas (`True AOV`, `Profit Margin %`, `Gross Loss Bleed`, and the `Dim_Date` table).
+2. Review [DAX_MEASURES.md](DAX_MEASURES.md) for corrected DAX formulas (`True AOV`, `Profit Margin %`, `Gross Loss Bleed`, and the `Dim_Date` table).
 
 ---
 
@@ -125,3 +136,13 @@ jupyter notebook ecommerce_analysis.ipynb
 
 ## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).
+
+---
+
+<div align="center">
+
+**⭐ Star this repo if you found it useful!**
+
+[🌐 Live Dashboard](https://patnamchinmayananda-png.github.io/E-Commerce-AI-SALES-Profit-engine-/) · [📊 Repository](https://github.com/patnamchinmayananda-png/E-Commerce-AI-SALES-Profit-engine-) · [🐛 Issues](https://github.com/patnamchinmayananda-png/E-Commerce-AI-SALES-Profit-engine-/issues)
+
+</div>
